@@ -2,9 +2,7 @@
 Cloud migration case study using Microsoft Azure (App Service, Azure SQL, Blob Storage, Entra ID)
 Azure Cloud Migration Case Study – GreenMart Retail
 📌 Overview
-
 This project demonstrates a cloud migration strategy for a small retail business moving from an on-premise environment to the cloud using Microsoft Azure.
-
 🎯 Objectives
 Improve availability and reliability
 Implement secure authentication and access control
