@@ -1,1 +1,23 @@
+## MIGRATION STRATEGY
+**HOSTING THE WEBSITE ON CLOUD**
+
+Azure App service can offer easy hosting service for our website, with Azure handling all the management of the website in terms of security patches, underlying infrastructure, APIs. It supports all web stacks making it flexible and easily integrate with whatever web stack the website was developed with. Azure App service also enables automatic scalability depending on the changes in demand/users using the website ensuring continuous availability. (inbuilt load balancing). Azure App service is a perfect fit for green market because, all management responsibility of infrastructure and endpoints are left to Azure, the supermarket only focusing on the development, this proves to be useful because the supermarket does not have an IT team and also enables the supermarket to focus on its primary business. Azure App service also offers the supermarket with an app service domain while also enabling them to import the domain and security certificate they might be already using.
+
+**HANDLING SECURITY-AUTHENTICATION**
+
+To effectively manage security, we will implement two azure security services; Entra ID which will handle authentication, easy change of passwords, password rules which help in easy compliance with password policies. With the retail supermarket not having an IT department, Entra ID would prove to be useful in handling authentication and easy monitoring of the security of the resources. 
+Implementation of RBAC, will improve integrity of the data, this is by ensuring that access of each resource we deploy in cloud is assigned to a role, then we will assign each role to different users giving the different employees access to only what they need to perform their daily work.
+
+**STORAGE OF DATA ON CLOUD**
+
+Use Azure SQL Database to store transactional data such as customer records and inventory, it offers benefits when querying the data and works easily with real time data. This data should be frequently backed up in Azure Blobs.
+Using Azure blobs for storage of backup data in the cloud, blobs are appropriate for this scenario, does not have restriction on types of data it can hold, unstructured data, blobs can simultaneously handle uploads, which is key especially in the supermarket as there are multiple simultaneous uploads of inventory and customer data throughout especially during peak hours.
+Azure Blob also offers easy management and structuring of data using Azure Data lake storage (extension of Azure blob) for easy data analysis which is very beneficial for the supermarket especially in predictive analysis and in making informed decision on stocking and inventory.
+Blob storage offers different storage tiers, with each tier having different level of latency and different cost implications. Data that are not frequently accessed are automatically backed up on the cool access tier ensuring there is continuous back up of data, easy restoration of the backup data when needed and low cost implications as cool tier is cheaper than storing all data in the hot access tier. The best way to manage the supermarkets data is implementing a data lifecycle management policy, where for example data that is frequently accessed (0-30 days) is stored in hot tier, data that is not frequently accessed is stored in cool tier, this ensures cost optimization, regular backup of data and easy restoration of data when backup is needed. This data lifecycle policy also helps in compliance with frameworks like Kenya Data Protection Act, because there’s regular backup of data, which is required according to the act. Moreover, data can be deleted after a certain amount of time of inactivity, which helps in compliance of Data lifecycle, where there’s only a certain amount of time data should be stores and consumer’s rights to be forgotten.
+
+**Migration**
+
+Migrate using Azure Database Migration Service, to migrate the database been used with our website, together with customer records that were been stored on the local desktop, Azure Database Migration is compatible with most used databases.  Implement automatic backup storage policy where data is continuously backed up to blob storage.
+Run tests on the data for example, querying the data to see if it brings out the expected results. This ensures everything has been migrated accurately and prevents crash downs when we fully go live.
+After testing and having accurate results, we can go live which means we will stop writes to our old database hosted in the local server, perform the last data-sync and also link our website to the SQL Database. 
 
